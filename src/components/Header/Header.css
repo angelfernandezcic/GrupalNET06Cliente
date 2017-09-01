@@ -1,0 +1,25 @@
+.navbar-header a{
+	padding-top: 7px;
+	padding-bottom: 7px;
+
+}
+img{
+	margin-left: 10px;
+	width: 48px;
+}
+
+.navbar-nav li a{
+	padding-top: 0px;
+}
+
+.navbar-nav i{
+	display: block;
+}
+
+.navbar-nav i:before{
+	font-size: 20px;
+}
+
+.navbar-nav li{
+	padding-top: 10px;
+}
