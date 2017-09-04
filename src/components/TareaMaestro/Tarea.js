@@ -4,11 +4,13 @@ export default {
   data () {
     return {
       items: [
-      ]
+      ],
+      isOpen: false,
+      itemInsercion: {}
     }
   },
   methods: {
-    getTodos: function () {
+    getTodos () {
       let _this = this
       $.ajax({
         type: 'GET',
@@ -21,10 +23,46 @@ export default {
           debugger
         }
       })
-    }
     },
-    created: function () {
-      console.log("Entro")
-      this.getTodos()
+    guardarDatos () {
+      let _this = this
+      console.log(_this.itemInsercion)
+      $.ajax({
+        type: 'POST',
+        url: 'http://localhost:51952/api/Tarea/',
+        data: _this.itemInsercion,
+        success: (response) => {
+          console.log(response)
+        },
+        error: () => {
+          console.log('Error insercion')
+          debugger
+        },
+        complete: () => {
+          _this.getTodos()
+        }
+    })
+    },
+    eliminarObjeto (id) {
+      let _this = this
+      console.log(_this.itemInsercion)
+      $.ajax({
+        type: 'DELETE',
+        url: 'http://localhost:51952/api/Tarea/' + id,
+        success: (response) => {
+          console.log(response)
+        },
+        error: () => {
+          console.log('Error eliminacion')
+          debugger
+        },
+        complete: () => {
+          _this.getTodos()
+        }
+      })
     }
+  },
+  created: function () {
+    this.getTodos()
   }
+}
