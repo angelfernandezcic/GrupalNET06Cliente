@@ -17,15 +17,31 @@ export default {
         success: function (response) {
           _this.items = JSON.parse(JSON.stringify(response))
         },
-        error: function(){
+        error: function(){          
           alert('Problemas al cargar el listado')
           debugger
+        }
+      })
+    },
+    eliminarObjeto (id) {
+      let _this = this
+      $.ajax({
+        type: 'DELETE',
+        url: 'http://localhost:51952/api/TipoTareas/' + id,
+        success: function (response) {
+          //alert('Eliminando item: '+ id)
+        },
+        error: function(){
+          //console.log('Error eliminacion')
+          debugger
+        },
+        complete: function(){
+          _this.getTodos()
         }
       })
     }
   },
   created: function () {
-    //console.log('1')
     this.getTodos()
   }
 }

@@ -17,12 +17,12 @@
 	                <div class="list-item__title"> {{ item.Categoria }} </div>
 	                <div class="list-item__subtitle"> {{ item.Descripcion }} </div>
 	            </div>
-				<!--<div class="col col-sm-3" id="go_detail">
+				<div class="col col-sm-3" id="go_detail">
 	            	<div class="list-item__title" id="go_detail_in">
 	            		<button @click="eliminarObjeto(item.Id)" id="boton_eliminar" class="btn btn-default">Eliminar</button>
 	            	</div>
 	            </div>
-	            <div class="col col-sm-3" id="go_detail">
+	            <!--<div class="col col-sm-3" id="go_detail">
 	            	<div class="list-item__title" id="go_detail_in">
 	            		<router-link :to="{ name: 'TareaDetalle', params: { id: item.Id }}">Ir al detalle <i class="fa fa-arrow-right" aria-hidden="true" style="font-size: 18px;"></i></router-link>
 	            	</div>
