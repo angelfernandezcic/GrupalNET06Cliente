@@ -10,7 +10,6 @@ import TipoMaestro from '../components/TipoMaestro'
 import EjecucionDetalle from '../components/EjecucionDetalle'
 import EjecucionMaestro from '../components/EjecucionMaestro'
 import TipoDetalle from '../components/TipoDetalle'
-import Ejecuciones from '../components/Ejecuciones'
 
 export default new Router({
   routes: [
