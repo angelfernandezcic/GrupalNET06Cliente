@@ -6,7 +6,7 @@ Vue.use(Router)
 import Home from '../components/Home'
 import TareaDetalle from '../components/TareaDetalle'
 import TareaMaestro from '../components/TareaMaestro'
-import Tipos from '../components/Tipos'
+import TipoMaestro from '../components/TipoMaestro'
 import Ejecuciones from '../components/Ejecuciones'
 
 export default new Router({
@@ -33,9 +33,9 @@ export default new Router({
       component: TareaDetalle
     },
     {
-      path: '/Tipos/',
-      name: 'Tipos',
-      component: Tipos
+      path: '/TipoMaestro/',
+      name: 'TipoMaestro',
+      component: TipoMaestro
     },
     {
       path: '/Ejecuciones/',
