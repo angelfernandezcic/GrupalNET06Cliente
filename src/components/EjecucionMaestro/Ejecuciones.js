@@ -24,20 +24,38 @@ export default {
     },
     eliminarObjeto (id) {
       let _this = this
-      $.ajax({
-        type: 'DELETE',
-        url: 'http://localhost:51952/api/Ejecuciones/' + id,
-        success: function (response) {
-          //alert('Eliminando item: '+ id)
+
+      bootbox.confirm({
+        message: "¿Eliminar de forma permanente?",
+        buttons: {
+            confirm: {
+                label: 'Si',
+                className: 'btn-success'
+            },
+            cancel: {
+                label: 'No',
+                className: 'btn-danger'
+            }
         },
-        error: function(){
-          //console.log('Error eliminacion')
-          debugger
-        },
-        complete: function(){
-          _this.getTodos()
+        callback: function (result) {
+            if(result){
+              $.ajax({
+                type: 'DELETE',
+                url: 'http://localhost:51952/api/Ejecuciones/' + id,
+                success: function (response) {
+                  //alert('Eliminando item: '+ id)
+                },
+                error: function(){
+                  //console.log('Error eliminacion')
+                  debugger
+                },
+                complete: function(){
+                  _this.getTodos()
+                }
+              })
+            }
         }
-      })
+      });
     }
   },
   created: function () {

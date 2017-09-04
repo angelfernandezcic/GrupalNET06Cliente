@@ -62,20 +62,31 @@ export default {
     })
     },actualizarDatos () {
       let _this = this
-      $.ajax({
-        type: 'PUT',
-        url: 'http://localhost:51952/api/Ejecuciones/'+this.idEjecucion,
-        data: _this.ejecucionFiltrada,
-        success: (response) => {
-          console.log(response)
-          _this.ejecucionFiltrada = {};
-          _this.$route.router.go('/EjecucionMaestro');
+      bootbox.confirm({
+        message: "¿Seguro que desea actualizar?",
+        buttons: {
+            confirm: {label: 'Si',className: 'btn-success'},
+            cancel: {label: 'No',className: 'btn-danger'}
         },
-        error: () => {
-          console.log('Error insercion')
-          debugger
+        callback: function (result) {
+          if(result){
+            $.ajax({
+              type: 'PUT',
+              url: 'http://localhost:51952/api/Ejecuciones/'+_this.idEjecucion,
+              data: _this.ejecucionFiltrada,
+              success: (response) => {
+                console.log(response)
+                _this.ejecucionFiltrada = {};
+                _this.$route.router.go('/EjecucionMaestro');
+              },
+              error: () => {
+                console.log('Error insercion')
+                debugger
+              }
+            })
+          }
         }
-    })
+    });
     }
   },
   components: {
