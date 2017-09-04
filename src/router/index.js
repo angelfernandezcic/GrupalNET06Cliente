@@ -23,6 +23,11 @@ export default new Router({
       component: TareaMaestro
     },
     {
+      path: '/TareaDetalle/',
+      name: 'TareaDetalle',
+      component: TareaDetalle
+    },
+    {
       path: '/TareaDetalle/:id',
       name: 'TareaDetalle',
       component: TareaDetalle

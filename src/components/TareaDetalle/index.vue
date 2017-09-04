@@ -78,6 +78,9 @@
                     <div class="col-xs-6">
 						<button @click="cancelarEdicion()" id="boton_cancelar" class="btn btn-default">Cancelar</button>
 					</div>
+					<div class="col-xs-6">
+						<button @click="guardarDatos()" id="boton_guardar" class="btn btn-default">Guardar</button>
+					</div>
 				</div>
 			</form>
 		</div>

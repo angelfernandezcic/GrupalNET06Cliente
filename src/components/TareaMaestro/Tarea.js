@@ -24,25 +24,6 @@ export default {
         }
       })
     },
-    guardarDatos () {
-      let _this = this
-      console.log(_this.itemInsercion)
-      $.ajax({
-        type: 'POST',
-        url: 'http://localhost:51952/api/Tarea/',
-        data: _this.itemInsercion,
-        success: (response) => {
-          console.log(response)
-        },
-        error: () => {
-          console.log('Error insercion')
-          debugger
-        },
-        complete: () => {
-          _this.getTodos()
-        }
-    })
-    },
     eliminarObjeto (id) {
       let _this = this
       console.log(_this.itemInsercion)
