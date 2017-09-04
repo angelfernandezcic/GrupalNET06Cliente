@@ -9,6 +9,8 @@ import TareaMaestro from '../components/TareaMaestro'
 import TipoMaestro from '../components/TipoMaestro'
 import EjecucionDetalle from '../components/EjecucionDetalle'
 import EjecucionMaestro from '../components/EjecucionMaestro'
+import TipoDetalle from '../components/TipoDetalle'
+import Ejecuciones from '../components/Ejecuciones'
 
 export default new Router({
   routes: [
@@ -52,6 +54,16 @@ export default new Router({
       path: '/EjecucionDetalle/:id',
       name: 'EjecucionDetalle',
       component: EjecucionDetalle
+    },
+    {
+      path: '/TipoDetalle/',
+      name: 'TipoDetalle',
+      component: TipoDetalle
+    },
+    {
+      path: '/TipoDetalle/:id',
+      name: 'TipoDetalle',
+      component: TipoDetalle
     }
   ],
   mode: 'hash'
