@@ -9,7 +9,7 @@
 					</div>
 				</div>
 				<div class="col-xs-1">
-					 <router-link to="/TareaDetalle">Insercion</router-link>
+					 <router-link to="/TipoDetalle">Insercion</router-link>
 				</div>
 			</div>
 			<div v-for="item in items" v-bind:key="item.Id" class="row list_container">

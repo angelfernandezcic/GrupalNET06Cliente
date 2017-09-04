@@ -7,6 +7,7 @@ import Home from '../components/Home'
 import TareaDetalle from '../components/TareaDetalle'
 import TareaMaestro from '../components/TareaMaestro'
 import TipoMaestro from '../components/TipoMaestro'
+import TipoDetalle from '../components/TipoDetalle'
 import Ejecuciones from '../components/Ejecuciones'
 
 export default new Router({
@@ -36,6 +37,16 @@ export default new Router({
       path: '/TipoMaestro/',
       name: 'TipoMaestro',
       component: TipoMaestro
+    },
+    {
+      path: '/TipoDetalle/',
+      name: 'TipoDetalle',
+      component: TipoDetalle
+    },
+    {
+      path: '/TipoDetalle/:id',
+      name: 'TipoDetalle',
+      component: TipoDetalle
     },
     {
       path: '/Ejecuciones/',
