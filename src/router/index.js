@@ -4,7 +4,8 @@ import Router from 'vue-router'
 Vue.use(Router)
 
 import Home from '../components/Home'
-import Tarea from '../components/Tarea'
+import TareaDetalle from '../components/TareaDetalle'
+import TareaMaestro from '../components/TareaMaestro'
 import Tipos from '../components/Tipos'
 import Ejecuciones from '../components/Ejecuciones'
 
@@ -17,9 +18,14 @@ export default new Router({
       component: Home
     },
     {
-      path: '/Tarea/',
-      name: 'Tarea',
-      component: Tarea
+      path: '/TareaMaestro/',
+      name: 'TareaMaestro',
+      component: TareaMaestro
+    },
+    {
+      path: '/TareaDetalle/:id',
+      name: 'TareaDetalle',
+      component: TareaDetalle
     },
     {
       path: '/Tipos/',
