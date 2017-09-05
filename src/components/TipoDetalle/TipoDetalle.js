@@ -3,9 +3,10 @@ export default {
   name: 'TipoDetalle',
   data() {
     return {
-      tipoFiltrada: {},
+      tipoFiltrada: {Id: '', Categoria: '', Descripcion: '', Repetitivo: '', Silenciable: '', Automatico: ''},
       tipoFiltradaBackUp: {},
-      isEditable: true
+      isEditable: true,
+      isValido: true
     }
   },
   created (){
@@ -49,50 +50,86 @@ export default {
     },
     guardar () {
       let _this = this;
-      $.ajax({
-        type: 'POST',
-        url: 'http://localhost:51952/api/TipoTareas/',
-        data: _this.tipoFiltrada,
-        success: function (response) {
-          _this.tipoFiltrada= {};
-          //console.log(response)
-        },
-        error: function () {
-          //console.log('Error insercion')
-          debugger
-        },
-        complete: function () {
-          _this.$router.push('/TipoMaestro');
-        }
-    })
+      let mensaje = this.validar();
+      if (this.isValido) {
+        $.ajax({
+          type: 'POST',
+          url: 'http://localhost:51952/api/TipoTareas/',
+          data: _this.tipoFiltrada,
+          success: function (response) {
+            _this.tipoFiltrada= {};
+            //console.log(response)
+          },
+          error: function () {
+            //console.log('Error insercion')
+            debugger
+          },
+          complete: function () {
+            _this.$router.push('/TipoMaestro');
+          }
+      })
+      } else {
+        bootbox.alert({ 
+          size: "small",
+          title: "Campos no válidos",
+          message: mensaje, 
+          //callback: function(){ /* your callback code */ }
+        })
+      }      
     },
     actualizar () {
       let _this = this
-      bootbox.confirm({
-        message: "¿Seguro que desea actualizar?",
-        buttons: {
-            confirm: {label: 'Si',className: 'btn-success'},
-            cancel: {label: 'No',className: 'btn-danger'}
-        },
-        callback: function (result) {
-          if(result){
-            $.ajax({
-              type: 'PUT',
-              url: 'http://localhost:51952/api/TipoTareas/'+_this.idTipo,
-              data: _this.tipoFiltrada,
-              success: function (response) {
-                _this.tipoFiltrada = {};
-              },
-              error: function () {
-                debugger
-              },
-              complete: function () {
-                _this.$router.push('/TipoMaestro');
-              }
-            });
+      let mensaje = this.validar();
+      if (this.isValido) {
+        bootbox.confirm({
+          message: "¿Seguro que desea actualizar?",
+          buttons: {
+              confirm: {label: 'Si',className: 'btn-success'},
+              cancel: {label: 'No',className: 'btn-danger'}
+          },
+          callback: function (result) {
+            if(result){
+              $.ajax({
+                type: 'PUT',
+                url: 'http://localhost:51952/api/TipoTareas/'+_this.idTipo,
+                data: _this.tipoFiltrada,
+                success: function (response) {
+                  _this.tipoFiltrada = {};
+                },
+                error: function () {
+                  debugger
+                },
+                complete: function () {
+                  _this.$router.push('/TipoMaestro');
+                }
+              });
+            }
           }
-        }
-      });
+        });
+      } else {
+        bootbox.alert({ 
+          size: "small",
+          title: "Campos no válidos",
+          message: mensaje, 
+          //callback: function(){ /* your callback code */ }
+        })
+      }
+    },
+    validar() {
+      let mensaje = '';
+      this.isValido = true;
+      if (!(this.tipoFiltrada.Categoria.length > 0 && this.tipoFiltrada.Categoria.length <= 15)) {
+        this.isValido = false;
+        //console.log(1);
+        mensaje = mensaje.concat('El campo Categoría tiene que tener una longitud entre 0 y 15 caracteres.');
+      };
+      if (!(this.tipoFiltrada.Descripcion.length > 0 && this.tipoFiltrada.Descripcion.length <= 35)) {
+        this.isValido = false;
+        //console.log(2);
+        mensaje = mensaje.concat('\n El campo Descripción tiene que tener una longitud entre 0 y 35 caracteres.');
+      };
+      //alert(mensaje);
+      return mensaje;
     }
   },
   components: {
