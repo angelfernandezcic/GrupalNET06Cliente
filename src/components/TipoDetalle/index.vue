@@ -17,16 +17,22 @@
 			<form>
 			    <div class="row">    
 			        <div class="col-xs-12 col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2">  
-						<div class="input-group">
-						  <span class="input-group-addon">Categoría: </span>
-						  <input v-bind:disabled="isEditable" v-model="tipoFiltrada.Categoria" type="text" class="form-control" aria-label="Categoria" >
+						<div class="form-group">
+						  <!--<span class="input-group-addon">Categoría: </span>-->
+						   	<label class="col-sm-2 control-label">Categoría: </label>
+            				<div class="col-sm-10">
+						  		<input v-bind:disabled="isEditable" v-model="tipoFiltrada.Categoria" type="text" class="form-control" aria-label="Categoria" >
+						  	</div>
 						</div>
 					</div
 				<div class="row">    
 			        <div class="col-xs-12 col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2">		
-						<div class="input-group">
-						  <span class="input-group-addon">Descripción: </span>
-						  <input v-bind:disabled="isEditable" v-model="tipoFiltrada.Descripcion" type="text" class="form-control" aria-label="Descripcion" >
+						<div class="form-group">
+							<label class="col-sm-2 control-label">Descripción: </label>
+            				<div class="col-sm-10">
+						  <!--<span class="input-group-addon">Descripción: </span>-->
+						  		<input v-bind:disabled="isEditable" v-model="tipoFiltrada.Descripcion" type="text" class="form-control" aria-label="Descripcion" >
+						  	</div>
 						</div>
 					</div>
 				</div>

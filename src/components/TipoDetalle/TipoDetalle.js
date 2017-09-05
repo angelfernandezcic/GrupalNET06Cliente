@@ -26,15 +26,15 @@ export default {
       }
     },
     getID() {
-      const _self = this
+      const _this = this
       this.idTipo = this.$route.params.id
       if(this.$route.params.id){
         $.ajax({
           type: 'GET',
           url: 'http://localhost:51952/api/TipoTareas/'+this.idTipo,   
           success: function (response) {
-            _self.tipoFiltrada = JSON.parse(JSON.stringify(response))
-            _self.tipoFiltradaBackUp = JSON.parse(JSON.stringify(response))
+            _this.tipoFiltrada = JSON.parse(JSON.stringify(response))
+            _this.tipoFiltradaBackUp = JSON.parse(JSON.stringify(response))
           },
           error: function () {
             //alert('Problemas al cargar el listado')
@@ -61,7 +61,7 @@ export default {
           debugger
         },
         complete: function () {
-          //Ir al maestro
+          _this.$router.push('/TipoMaestro');
         }
     })
     },
@@ -86,7 +86,7 @@ export default {
                 debugger
               },
               complete: function () {
-                //Ir al maestro
+                _this.$router.push('/TipoMaestro');
               }
             });
           }

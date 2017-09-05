@@ -9,10 +9,10 @@
 					</div>-->
 				</div>
 				<div class="col-xs-1">
-					 <router-link to="/TipoDetalle">Insercion</router-link>
+					 <router-link to="/TipoDetalle">Inserción</router-link>
 				</div>
 			</div>
-			<div v-for="item in items" v-bind:key="item.Id" class="row list_container">
+			<div v-for="item in items" v-bind:key="item.Id" class="row list_container list-group-item">
 	            <div id="main_info" class="col col-sm-6">
 	                <div class="list-item__title"> {{ item.Categoria }} </div>
 	                <div class="list-item__subtitle"> {{ item.Descripcion }} </div>
