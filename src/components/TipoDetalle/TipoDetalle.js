@@ -15,12 +15,14 @@ export default {
     '$route': 'getID'
   },
   methods: {
-    cancelarEdicion () {
-      this.tipoFiltrada = JSON.parse(JSON.stringify(this.tipoFiltradaBackUp))
+    cancelar () {
+      this.tipoFiltrada = JSON.parse(JSON.stringify(this.tipoFiltradaBackUp));
+      this.$router.push('/TipoMaestro');
+      
     },
     activarEdicion () {
       if (this.isEditable) {
-        this.cancelarEdicion()
+        this.tipoFiltrada = JSON.parse(JSON.stringify(this.tipoFiltradaBackUp));
       }
     },
     getID() {
@@ -44,7 +46,7 @@ export default {
       }
       
     },
-    guardarDatos () {
+    guardar () {
       let _this = this;
       $.ajax({
         type: 'POST',
@@ -65,18 +67,29 @@ export default {
     },
     actualizar () {
       let _this = this
-      $.ajax({
-        type: 'PUT',
-        url: 'http://localhost:51952/api/TipoTareas/'+_this.idTipo,
-        data: _this.tipoFiltrada,
-        success: function (response) {
-          _this.tipoFiltrada = {};
+      bootbox.confirm({
+        message: "¿Seguro que desea actualizar?",
+        buttons: {
+            confirm: {label: 'Si',className: 'btn-success'},
+            cancel: {label: 'No',className: 'btn-danger'}
         },
-        error: function () {
-          debugger
-        },
-        complete: function () {
-          //Ir al maestro
+        callback: function (result) {
+          if(result){
+            $.ajax({
+              type: 'PUT',
+              url: 'http://localhost:51952/api/TipoTareas/'+_this.idTipo,
+              data: _this.tipoFiltrada,
+              success: function (response) {
+                _this.tipoFiltrada = {};
+              },
+              error: function () {
+                debugger
+              },
+              complete: function () {
+                //Ir al maestro
+              }
+            });
+          }
         }
       });
     }

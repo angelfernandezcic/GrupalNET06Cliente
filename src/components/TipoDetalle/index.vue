@@ -46,13 +46,13 @@
                 </div>
 				<div class="row">
 					<div class="col-xs-6">
+						<button @click="cancelar()" id="boton_cancelar" class="btn btn-default"><i class="fa fa-arrow-left" aria-hidden="true" style="font-size: 18px;"></i> Cancelar</button>
+					</div>
+					<div class="col-xs-6" v-show="tipoFiltrada.Id">
 						<button @click="actualizar()" id="boton_actualizar" class="btn btn-default">Actualizar</button>
-					</div>
-                    <div class="col-xs-6">
-						<button @click="cancelarEdicion()" id="boton_cancelar" class="btn btn-default">Cancelar</button>
-					</div>
-					<div class="col-xs-6">
-						<button @click="guardarDatos()" id="boton_guardar" class="btn btn-default">Guardar</button>
+					</div>                    
+					<div class="col-xs-6" v-show="!tipoFiltrada.Id">
+						<button @click="guardar()" id="boton_guardar" class="btn btn-default">Guardar</button>
 					</div>
 				</div>
 			</form>
