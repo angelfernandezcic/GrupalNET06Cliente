@@ -4,12 +4,12 @@ import Router from 'vue-router'
 Vue.use(Router)
 
 import Home from '../components/Home'
-import TareaDetalle from '../components/TareaDetalle'
 import TareaMaestro from '../components/TareaMaestro'
+import TareaDetalle from '../components/TareaDetalle'
 import TipoMaestro from '../components/TipoMaestro'
-import EjecucionDetalle from '../components/EjecucionDetalle'
-import EjecucionMaestro from '../components/EjecucionMaestro'
 import TipoDetalle from '../components/TipoDetalle'
+import EjecucionMaestro from '../components/EjecucionMaestro'
+import EjecucionDetalle from '../components/EjecucionDetalle'
 
 export default new Router({
   routes: [
@@ -35,11 +35,6 @@ export default new Router({
       component: TareaDetalle
     },
     {
-      path: '/TipoMaestro/',
-      name: 'TipoMaestro',
-      component: TipoMaestro
-    },
-    {
       path: '/EjecucionMaestro/',
       name: 'EjecucionMaestro',
       component: EjecucionMaestro
@@ -53,6 +48,11 @@ export default new Router({
       path: '/EjecucionDetalle/:id',
       name: 'EjecucionDetalle',
       component: EjecucionDetalle
+    },
+    {
+      path: '/TipoMaestro/',
+      name: 'TipoMaestro',
+      component: TipoMaestro
     },
     {
       path: '/TipoDetalle/',

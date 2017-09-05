@@ -26,21 +26,36 @@ export default {
     },
     eliminarObjeto (id) {
       let _this = this
-      console.log(_this.itemInsercion)
-      $.ajax({
-        type: 'DELETE',
-        url: 'http://localhost:51952/api/Tarea/' + id,
-        success: (response) => {
-          console.log(response)
+
+      bootbox.confirm({
+        message: "¿Eliminar de forma permanente?",
+        buttons: {
+            confirm: {
+                label: 'Si',
+                className: 'btn-success'
+            },
+            cancel: {
+                label: 'No',
+                className: 'btn-danger'
+            }
         },
-        error: () => {
-          console.log('Error eliminacion')
-          debugger
-        },
-        complete: () => {
-          _this.getTodos()
+        callback: function (result) {
+            if(result){
+              $.ajax({
+                type: 'DELETE',
+                url: 'http://localhost:51952/api/Tarea/' + id,
+                success: function (response) {
+                },
+                error: function(){
+                  debugger
+                },
+                complete: function(){
+                  _this.getTodos()
+                }
+              })
+            }
         }
-      })
+      });
     }
   },
   created: function () {
