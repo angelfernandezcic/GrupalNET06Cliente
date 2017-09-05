@@ -26,37 +26,59 @@ export default {
     getID() {
       const _self = this
       this.idTipo = this.$route.params.id
-      $.ajax({
-        type: 'GET',
-        url: 'http://localhost:51952/api/TipoTareas/'+this.idTipo,   
-        success: function (response) {
-          _self.tipoFiltrada = JSON.parse(JSON.stringify(response))
-          _self.tipoFiltradaBackUp = JSON.parse(JSON.stringify(response))
-        },
-        error: function () {
-          alert('Problemas al cargar el listado')
-          debugger
-        }
-      })
+      if(this.$route.params.id){
+        $.ajax({
+          type: 'GET',
+          url: 'http://localhost:51952/api/TipoTareas/'+this.idTipo,   
+          success: function (response) {
+            _self.tipoFiltrada = JSON.parse(JSON.stringify(response))
+            _self.tipoFiltradaBackUp = JSON.parse(JSON.stringify(response))
+          },
+          error: function () {
+            //alert('Problemas al cargar el listado')
+            debugger
+          }
+        })
+      } else {
+        //Ahora no casca al dar insertar
+      }
+      
     },
     guardarDatos () {
-      let _this = this
-      console.log(_this.itemInsercion)
+      let _this = this;
       $.ajax({
         type: 'POST',
         url: 'http://localhost:51952/api/TipoTareas/',
-        data: _this.itemInsercion,
-        success: (response) => {
-          console.log(response)
+        data: _this.tipoFiltrada,
+        success: function (response) {
+          _this.tipoFiltrada= {};
+          //console.log(response)
         },
         error: function () {
-          console.log('Error insercion')
+          //console.log('Error insercion')
           debugger
         },
         complete: function () {
-          _this.getTodos()
+          //Ir al maestro
         }
     })
+    },
+    actualizar () {
+      let _this = this
+      $.ajax({
+        type: 'PUT',
+        url: 'http://localhost:51952/api/TipoTareas/'+_this.idTipo,
+        data: _this.tipoFiltrada,
+        success: function (response) {
+          _this.tipoFiltrada = {};
+        },
+        error: function () {
+          debugger
+        },
+        complete: function () {
+          //Ir al maestro
+        }
+      });
     }
   },
   components: {
