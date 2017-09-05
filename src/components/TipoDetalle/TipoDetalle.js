@@ -43,6 +43,7 @@ export default {
         })
       } else {
         //Ahora no casca al dar insertar
+        this.isEditable = false;
       }
       
     },
