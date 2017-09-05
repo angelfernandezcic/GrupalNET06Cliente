@@ -18,7 +18,7 @@ export default {
           _this.items = JSON.parse(JSON.stringify(response))
         },
         error: function(){          
-          alert('Problemas al cargar el listado')
+          //alert('Problemas al cargar el listado')
           debugger
         }
       })

@@ -19,10 +19,9 @@
 			        <div class="col-xs-12 col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2">  
 						<div class="input-group">
 						  <span class="input-group-addon">Categoría: </span>
-						  <input v-bind:disabled="isEditable" v-model="tipoFiltrada.Nombre" type="text" class="form-control" aria-label="Categoria" >
+						  <input v-bind:disabled="isEditable" v-model="tipoFiltrada.Categoria" type="text" class="form-control" aria-label="Categoria" >
 						</div>
-					</div>
-				</div>
+					</div
 				<div class="row">    
 			        <div class="col-xs-12 col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2">		
 						<div class="input-group">
@@ -32,22 +31,22 @@
 					</div>
 				</div>
                 <div class="row">
-                    <label for="checkbox" class="col-sm-10">
+                    <label for="checkbox-inline" class="col-sm-10">
                         <input v-bind:disabled="isEditable" type="checkbox" id="repetitivo" v-model="tipoFiltrada.Repetitivo">
                         Repetitiva
                     </label>
-                    <label for="checkbox" class="col-sm-10">
+                    <label for="checkbox-inline" class="col-sm-10">
                         <input v-bind:disabled="isEditable" type="checkbox" id="silenciable" v-model="tipoFiltrada.Silenciable">
                         Silenciable
                     </label>
-                    <label for="checkbox" class="col-sm-10">
+                    <label for="checkbox-inline" class="col-sm-10">
                         <input v-bind:disabled="isEditable" type="checkbox" id="automatico" v-model="tipoFiltrada.Automatico">
                         Automatica
                     </label>
                 </div>
 				<div class="row">
 					<div class="col-xs-6">
-						<button @click="mostrarDatos()" id="boton_actualizar" class="btn btn-default">Actualizar</button>
+						<button @click="actualizar()" id="boton_actualizar" class="btn btn-default">Actualizar</button>
 					</div>
                     <div class="col-xs-6">
 						<button @click="cancelarEdicion()" id="boton_cancelar" class="btn btn-default">Cancelar</button>
