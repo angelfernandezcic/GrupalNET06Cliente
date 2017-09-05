@@ -16,10 +16,7 @@ export default {
         success: function (response) {
           _this.items = JSON.parse(JSON.stringify(response))
         },
-        error: function(){          
-          alert('Problemas al cargar el listado')
-          debugger
-        }
+        error: _this.error
       })
     },
     eliminarObjeto (id) {
@@ -27,6 +24,7 @@ export default {
 
       bootbox.confirm({
         message: "¿Eliminar de forma permanente?",
+        size: 'small',
         buttons: {
             confirm: {
                 label: 'Si',
@@ -43,19 +41,22 @@ export default {
                 type: 'DELETE',
                 url: 'http://localhost:51952/api/Ejecuciones/' + id,
                 success: function (response) {
-                  //alert('Eliminando item: '+ id)
                 },
-                error: function(){
-                  //console.log('Error eliminacion')
-                  debugger
-                },
+                error: _this.error,
                 complete: function(){
-                  _this.getTodos()
+                  _this.getTodos();
+                  bootbox.alert({
+                    message: "¡Eliminación realizada con éxito!",
+                    size: 'small',
+                  })
                 }
               })
             }
         }
       });
+    },
+    error: function (xhr, textStatus, errorThrown) {
+      bootbox.alert("Error!->" + errorThrown + "-->" + xhr.responseText);
     }
   },
   created: function () {

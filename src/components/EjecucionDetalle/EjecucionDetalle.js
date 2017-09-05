@@ -1,95 +1,123 @@
 var _ = require('lodash');
 export default {
-  name: 'Detail',
+  name : 'Detail',
   data() {
-    return {
-      ejecucionFiltrada: {},
-      ejecucionFiltradaBackUp: {},
-      isEditable: false
-    }
+    return {ejecucionFiltrada: {}, ejecucionFiltradaBackUp: {}, isEditable: false}
   },
-  created (){
-  	this.getID()
+  created() {
+    this.getID()
   },
-  watch: {
+  watch : {
     '$route': 'getID'
   },
-  methods: {
-    cancelarEdicion () {
+  computed : {
+    disableUpdate: function () {
+      var propiedades = [
+        "Nombre",
+        "Exito",
+        "Mensaje",
+        "FechaInicio",
+        "FechaFinal",
+        "ConsumoMemoria",
+        "ConsumoRed"
+      ];
+      var disable = true;
+      for (var i = 0; i < propiedades.length; i++) {
+        if (this.ejecucionFiltrada[propiedades[i]] != this.ejecucionFiltradaBackUp[propiedades[i]]) {
+          disable = false;
+          break;
+        }
+      }
+      return (disable || !this.isEditable);
+    }
+  },
+  methods : {
+    cancelarEdicion() {
       this.ejecucionFiltrada = JSON.parse(JSON.stringify(this.ejecucionFiltradaBackUp))
     },
-    activarEdicion () {
-      if (this.isEditable) {
-        this.cancelarEdicion()
-      }
+    goToMaestro() {
+      this
+        .$router
+        .push('/EjecucionMaestro');
     },
     getID() {
       const _self = this
       this.idEjecucion = this.$route.params.id
-      if(this.$route.params.id){
+      if (this.$route.params.id) {
         $.ajax({
           type: 'GET',
           url: 'http://localhost:51952/api/Ejecuciones/' + this.idEjecucion,
           success: function (response) {
             _self.ejecucionFiltrada = JSON.parse(JSON.stringify(response))
             _self.ejecucionFiltradaBackUp = JSON.parse(JSON.stringify(response))
-            this.isEditable=false;
+            this.isEditable = false;
           },
-          error: () => {
-            alert('Problemas al cargar el listado')
-            debugger
-          }
+          error: _self.error
         })
-      }else{
+      } else {
         this.isEditable = true;
       }
     },
-    guardarDatos () {
+    guardarDatos() {
       let _this = this
       $.ajax({
         type: 'POST',
         url: 'http://localhost:51952/api/Ejecuciones/',
         data: _this.ejecucionFiltrada,
         success: (response) => {
-          console.log(response)
           _this.ejecucionFiltrada = {};
-          _this.$route.router.go('/EjecucionMaestro');
+          bootbox.alert({
+            message: "¡Guardado realizado con éxito!",
+            size: 'small',
+            callback: function () {
+              _this.$router.push('/EjecucionMaestro');
+            }
+          })
         },
-        error: () => {
-          console.log('Error insercion')
-          debugger
-        }
-    })
-    },actualizarDatos () {
+        error: _this.error
+      })
+    },
+    actualizarDatos() {
       let _this = this
       bootbox.confirm({
         message: "¿Seguro que desea actualizar?",
+        size: 'small',
         buttons: {
-            confirm: {label: 'Si',className: 'btn-success'},
-            cancel: {label: 'No',className: 'btn-danger'}
+          confirm: {
+            label: 'Si',
+            className: 'btn-success'
+          },
+          cancel: {
+            label: 'No',
+            className: 'btn-danger'
+          }
         },
         callback: function (result) {
-          if(result){
+          if (result) {
             $.ajax({
               type: 'PUT',
-              url: 'http://localhost:51952/api/Ejecuciones/'+_this.idEjecucion,
+              url: 'http://localhost:51952/api/Ejecuciones/' + _this.idEjecucion,
               data: _this.ejecucionFiltrada,
               success: (response) => {
-                console.log(response)
                 _this.ejecucionFiltrada = {};
-                _this.$route.router.go('/EjecucionMaestro');
+                bootbox.alert({
+                  message: "¡Actualización realizada con éxito!",
+                  size: 'small',
+                  callback: function () {
+                    _this.$router.push('/EjecucionMaestro');
+                  }
+                })
+
               },
-              error: () => {
-                console.log('Error insercion')
-                debugger
-              }
+              error: _this.error
             })
           }
         }
-    });
+      });
+    },
+    error: function (xhr, textStatus, errorThrown) {
+      bootbox.alert("Error!->" + errorThrown + "-->" + xhr.responseText);
     }
   },
-  components: {
-
-  }
+  components : {}
 }
