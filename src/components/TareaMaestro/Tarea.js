@@ -3,8 +3,7 @@ export default {
   name: 'TareaMaestro',
   data () {
     return {
-      items: [
-      ],
+      items: [],
       isOpen: false,
       itemInsercion: {}
     }
@@ -18,7 +17,21 @@ export default {
         success: function (response) {
           _this.items = JSON.parse(JSON.stringify(response))
         },
-        error: () => {
+        error: (error) => {
+          alert('Problemas al cargar el listado')
+          debugger
+        }
+      })
+    },
+    getTipos () {
+      let _this = this
+      $.ajax({
+        type: 'GET',
+        url: 'http://localhost:51952/api/TipoTareas',   
+        success: function (response) {
+          _this.tipos = JSON.parse(JSON.stringify(response))
+        },
+        error: (error) => {
           alert('Problemas al cargar el listado')
           debugger
         }
@@ -26,7 +39,6 @@ export default {
     },
     eliminarObjeto (id) {
       let _this = this
-
       bootbox.confirm({
         message: "¿Eliminar de forma permanente?",
         buttons: {
@@ -46,7 +58,7 @@ export default {
                 url: 'http://localhost:51952/api/Tarea/' + id,
                 success: function (response) {
                 },
-                error: function(){
+                error: function(error){
                   debugger
                 },
                 complete: function(){
@@ -60,5 +72,6 @@ export default {
   },
   created: function () {
     this.getTodos()
+    this.getTipos()
   }
 }
