@@ -30,9 +30,8 @@
 				</div>
 				<div class="row">
 					<div class="col-xs-12 col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2">
-						<label for="checkbox-inline" class="col-sm-12">
-							<input v-bind:disabled="!isEditable" v-model="ejecucionFiltrada.Exito" type="checkbox" aria-label="Exito"> Éxito
-						</label>
+						<label for="checkbox-inline" class="col-xs-3"> Éxito</label>
+						<input class="col-xs-9" type="checkbox" aria-label="Exito">
 					</div>
 				</div>
 				<div class="row">
@@ -81,18 +80,17 @@
 					</div>
 				</div>
 				<div class="row">
-						<button @click="cancelarEdicion()" id="boton_cancelar" class="btn btn-default">
-							<i class="fa fa-times"></i> Cancelar
-						</button>
+					<button @click="cancelarEdicion()" id="boton_cancelar" class="btn btn-default">
+						<i class="fa fa-times"></i> Cancelar
+					</button>
 
-						<button v-if="!Object.keys(ejecucionFiltradaBackUp).length" @click="guardarDatos()" id="boton_guardar" class="btn btn-default">
-							<i class="fa fa-floppy-o"></i>Guardar
-						</button>
+					<button v-if="!Object.keys(ejecucionFiltradaBackUp).length" @click="guardarDatos()" id="boton_guardar" class="btn btn-default">
+						<i class="fa fa-floppy-o"></i>Guardar
+					</button>
 
-
-						<button v-if="Object.keys(ejecucionFiltradaBackUp).length" :disabled="disableUpdate" @click="actualizarDatos()" id="boton_actualizar" class="btn btn-default">
-							<i class="fa fa-undo"></i> Actualizar
-						</button>
+					<button v-if="Object.keys(ejecucionFiltradaBackUp).length" :disabled="disableUpdate" @click="actualizarDatos()" id="boton_actualizar" class="btn btn-default">
+						<i class="fa fa-undo"></i> Actualizar
+					</button>
 
 				</div>
 			</form>
