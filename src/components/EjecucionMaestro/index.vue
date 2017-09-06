@@ -1,12 +1,15 @@
 <template>
     <div id="EjecucionMaestro">
-        <div class="container-fluid">
+		<div class="container-fluid">
 			<div id="barra_botones" class="row">
-				<div class="col-xs-1">
-					 <router-link to="/EjecucionDetalle">Inserción</router-link>
+				<div class="col-xs-2 col-xs-offset-5">
+					 <router-link to="/EjecucionDetalle">Insercion</router-link>
 				</div>
 			</div>
-			<div class="list-group">
+			<div v-if="items.length < 1">
+				<h3>No existen ejecuciones insertadas</h3>
+			</div>
+			<div v-else class="list-group">
 				<div v-for="item in items" class="row list-group-item">
 					<router-link :to="{ name: 'EjecucionDetalle', params: { id: item.Id }}">
 			            <div id="main_info" class="col col-sm-9">
