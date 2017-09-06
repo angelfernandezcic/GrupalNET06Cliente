@@ -8,7 +8,7 @@
 				</div>
 			</div>
 			<div v-if="items.length < 1">
-				<h3>No existen tareas insertadas</h3>
+				<h3>No exite ningún tipo de tarea.</h3>
 			</div>
 			<div v-else v-for="item in items" v-bind:key="item.Id" class="row list_container list-group-item">
 				<router-link :to="{ name: 'TipoDetalle', params: { id: item.Id }}">

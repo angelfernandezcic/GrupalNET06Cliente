@@ -24,10 +24,8 @@
 			    <div class="row">    
 			        <div class="col-xs-12 col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2">  
 						<div class="form-group">
-							<div class="col-xs-3">
 						 		<!--<span class="input-group-addon">Categoría: </span>-->
-						   		<label>Categoría: </label>
-							</div>
+						   	<label class="col-xs-3">Categoría: </label>
             				<div class="col-xs-9">
 						  		<input v-bind:disabled="isEditable" v-model="tipoFiltrada.Categoria" type="text" class="form-control" aria-label="Categoria" >
 						  	</div>
@@ -36,9 +34,7 @@
 				<div class="row">    
 			        <div class="col-xs-12 col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2">		
 						<div class="form-group">
-            				<div class="col-xs-3">
-								<label>Descripción: </label>
-							</div>	
+							<label class="col-xs-3">Descripción: </label>
 							<div class="col-xs-9">
 						  <!--<span class="input-group-addon">Descripción: </span>-->
 						  		<input v-bind:disabled="isEditable" v-model="tipoFiltrada.Descripcion" type="text" class="form-control" aria-label="Descripcion" >
