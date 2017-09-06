@@ -40,33 +40,29 @@ export default {
       if (!this.ejecucionFiltrada.Mensaje || this.ejecucionFiltrada.Mensaje.length <= 0 || this.ejecucionFiltrada.Mensaje.length > 100) {
         mensaje += "&#9888; Mensaje tiene que tener entre 1 y 100 caracteres.<br>";
       }
-      if (!this.ejecucionFiltrada.ConsumoMemoria || this.ejecucionFiltrada.ConsumoMemoria <= 0) {
-        mensaje += "&#9888; Consumo de memoria tiene que ser mayor que 0.<br>";
-      }
-      var fecha = new Date(this.ejecucionFiltrada.FechaInicio);
-      if (!this.ejecucionFiltrada.FechaInicio) {
-        mensaje += "&#9888; Introduzca fecha de inicio.<br>";
-      } else if (fecha instanceof Date && !isNaN(fecha.valueOf())) {
-        mensaje += "&#9888; Fecha de inicio ha de ser una fecha válida.<br>";
-      }
-      fecha = new Date(this.ejecucionFiltrada.FechaFinal);
-      if (!this.ejecucionFiltrada.FechaFinal) {
-        mensaje += "&#9888; Introduzca fecha final.<br>";
-      } else if (!(fecha instanceof Date && !isNaN(fecha.valueOf()))) {
-        mensaje += "&#9888; Fecha final ha de ser una fecha válida.<br>";
-      }
 
       if (isNaN(parseFloat(this.ejecucionFiltrada.ConsumoRed))) {
         mensaje += "&#9888; Consumo de red tiene que ser un numero.<br>";
-      } else if (!(fecha instanceof Date && !isNaN(fecha.valueOf()))) {
-        mensaje += "&#9888; Consumo de red tiene que ser un numero mayor que 0<br>";
+      } else if (this.ejecucionFiltrada.ConsumoRed <= 0)  {
+        mensaje += "&#9888; Consumo de red tiene que ser un numero mayor que 0.<br>";
       }
-
       if (isNaN(parseFloat(this.ejecucionFiltrada.ConsumoMemoria))) {
         mensaje += "&#9888; Consumo de memoria tiene que ser un numero.<br>";
       } else if (this.ejecucionFiltrada.ConsumoMemoria <= 0) {
-        mensaje += "&#9888; Consumo de memoria tiene que ser un numero mayor que 0<br>";
+        mensaje += "&#9888; Consumo de memoria tiene que ser un numero mayor que 0.<br>";
       }
+      if(!!this.ejecucionFiltrada.FechaInicio == false){
+        mensaje += "&#9888; Introduzca una fecha de inicio<br>";
+      }else if (isNaN(Date.parse(this.ejecucionFiltrada.FechaInicio.split('/').reverse().join('-')))) {
+        mensaje += "&#9888; Fecha de inicio ha de ser una fecha valida, formato dd/mm/aaaa.<br>";
+      }
+      if(!!this.ejecucionFiltrada.FechaFinal == false){
+        mensaje += "&#9888; Introduzca una fecha final<br>";
+      }else if (isNaN(Date.parse(this.ejecucionFiltrada.FechaFinal.split('/').reverse().join('-')))) {
+        mensaje += "&#9888; Fecha final ha de ser una fecha valida, formato dd/mm/aaaa.<br>";
+      }
+
+
       return mensaje;
     },
     cancelarEdicion() {
