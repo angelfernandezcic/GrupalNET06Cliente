@@ -2,13 +2,16 @@
     <div id="TipoMaestro">
         <!--<h3>Tipos</h3>-->
         <div class="container-fluid">
-			<div id="barra_botones" class="row">				
-				<div class="col-xs-2 col-xs-offset-5">
-					 <router-link to="/TipoDetalle">Inserción</router-link>
+			<div id="barra_botones" class="row">	
+				<h3>Tipos de tareas.</h3>			
+				<div class="col-sm-3 col-sm-offset-9">
+					<button id="insertar" @click="nuevoitem()" class="btn btn-default">
+							<i class="fa fa-plus"></i> Inserción</button>
+					 <!--<router-link to="/TipoDetalle">Inserción</router-link>-->
 				</div>
 			</div>
 			<div v-if="items.length < 1">
-				<h3>No exite ningún tipo de tarea.</h3>
+				<h3>No existen tipos de tareas.</h3>
 			</div>
 			<div v-else v-for="item in items" v-bind:key="item.Id" class="row list_container list-group-item">
 				<router-link :to="{ name: 'TipoDetalle', params: { id: item.Id }}">

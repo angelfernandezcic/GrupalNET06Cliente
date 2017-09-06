@@ -56,6 +56,9 @@ export default {
             }
           }
       });
+    },
+    nuevoitem: function() {
+      this.$router.push('/TipoDetalle');
     }
   },
   created: function () {
