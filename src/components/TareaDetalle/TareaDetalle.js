@@ -36,6 +36,31 @@ export default {
     }
   },
   methods: {
+    notValid: function () {
+      var mensaje = "";
+      if (!this.tareaFiltrada.Nombre || this.tareaFiltrada.Nombre.length <= 0 || this.tareaFiltrada.Nombre.length > 40) {
+        mensaje += "&#9888; Nombre tiene que tener entre 1 y 40 caracteres.<br>";
+      }
+      if (!this.tareaFiltrada.Descripcion || this.tareaFiltrada.Descripcion.length <= 0 || this.tareaFiltrada.Descripcion.length > 100) {
+        mensaje += "&#9888; Descripcion tiene que tener entre 1 y 100 caracteres.<br>";
+      }
+      if (!this.tareaFiltrada.Tipo || this.tareaFiltrada.Tipo.length <= 0 || this.tareaFiltrada.Tipo.length > 40) {
+        mensaje += "&#9888; Tipo tiene que tener entre 1 y 40 caracteres.<br>";
+      }
+      var fecha = new Date(this.tareaFiltrada.Fecha);
+      if (!this.tareaFiltrada.Fecha) {
+        mensaje += "&#9888; Introduzca fecha.<br>";
+      } else if (fecha instanceof Date && !isNaN(fecha.valueOf())) {
+        mensaje += "&#9888; Fecha ha de ser una fecha válida.<br>";
+      }
+      if (!this.tareaFiltrada.Programacion || this.tareaFiltrada.Programacion.length <= 0 || this.tareaFiltrada.Programacion.length > 100) {
+        mensaje += "&#9888; Programacion tiene que tener entre 1 y 100 caracteres.<br>";
+      }
+      if (!this.tareaFiltrada.Formato || this.tareaFiltrada.Formato.length <= 0 || this.tareaFiltrada.Formato.length > 40) {
+        mensaje += "&#9888; Formato tiene que tener entre 1 y 40 caracteres.<br>";
+      }
+      return mensaje;
+    },
     cancelarEdicion() {
       this.tareaFiltrada = JSON.parse(JSON.stringify(this.tareaFiltradaBackUp))
     },
@@ -67,6 +92,7 @@ export default {
     },
     guardarDatos () {
       let _this = this
+      var mensaje = this.notValid()
       $.ajax({
         type: 'POST',
         url: 'http://localhost:51952/api/Tarea/',
