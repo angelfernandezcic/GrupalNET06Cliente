@@ -31,7 +31,7 @@ export default new Router({
     },
     {
       path: '/TareaDetalle/:id',
-      name: 'TareaDetalle',
+      name: 'TareaDetalleId',
       component: TareaDetalle
     },
     {
@@ -46,7 +46,7 @@ export default new Router({
     },
     {
       path: '/EjecucionDetalle/:id',
-      name: 'EjecucionDetalle',
+      name: 'EjecucionDetalleId',
       component: EjecucionDetalle
     },
     {
@@ -61,7 +61,7 @@ export default new Router({
     },
     {
       path: '/TipoDetalle/:id',
-      name: 'TipoDetalle',
+      name: 'TipoDetalleId',
       component: TipoDetalle
     }
   ],
