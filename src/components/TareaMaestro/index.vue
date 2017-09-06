@@ -20,7 +20,7 @@
 			        </router-link>
 						<div class="col col-sm-3" id="go_detail">
 			            	<div class="list-item__title" id="go_detail_in">
-			            		<button @click="eliminarObjeto(item.Id)" id="boton_eliminar" class="btn btn-default">Eliminar</button>
+			            		<button @click="eliminarObjeto(item.Id)" id="boton_eliminar" class="btn btn-default"><i class="fa fa-trash"></i> Eliminar</button>
 			            	</div>
 			            </div>
 				</div>
