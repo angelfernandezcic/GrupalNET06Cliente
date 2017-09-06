@@ -31,7 +31,7 @@
 				<div class="row">
 					<div class="col-xs-12 col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2">
 						<label for="checkbox-inline" class="col-xs-3"> Éxito</label>
-						<input class="col-xs-9" type="checkbox" aria-label="Exito">
+						<input v-bind:disabled="!isEditable" v-model="ejecucionFiltrada.Exito" class="col-xs-9" type="checkbox" aria-label="Exito">
 					</div>
 				</div>
 				<div class="row">
