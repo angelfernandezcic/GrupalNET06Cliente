@@ -6,12 +6,18 @@
                     <!--<div class="col-xs-1">
                         <router-link to="/TipoMaestro">Volver a maestro</router-link>
                     </div>-->
-                    <div class="col-xs-10 col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2">  
+					<div class="col-xs-6">
+						<button @click="volver" class="btn btn-default">
+							<i class="fa fa-mail-reply"></i> Volver</button>
+					</div>
+					<div v-if="Object.keys(tipoFiltradaBackUp).length" class="col-xs-6">
+                        <button @click="activarEdicion(isEditable = !isEditable)" class="btn btn-default">
+							<i class="fa fa-pencil"></i> Editar</button>
+                    </div>
+                    <div class="col-xs-9 col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2">  
 						<h2>{{!Object.keys(tipoFiltradaBackUp).length?"Insertar nuevo tipo de tarea":"Detalle del tipo de tarea"}}</h2>
                     </div>
-                    <div v-if="Object.keys(tipoFiltradaBackUp).length" class="col-xs-1">
-                        <button @click="activarEdicion(isEditable = !isEditable)" class="btn btn-default">Editar</button>
-                    </div>
+                    
                 </div>
 			</div>
 			<form>
@@ -55,15 +61,15 @@
                     </label>
                 </div>
 				<div class="row">
-					<div class="col-xs-6">
-						<button @click="cancelar()" id="boton_cancelar" class="btn btn-default"><i class="fa fa-arrow-left" aria-hidden="true" style="font-size: 18px;"></i> Cancelar</button>
-					</div>
-					<div class="col-xs-6" v-show="tipoFiltrada.Id">
-						<button v-bind:disabled="isEditable" @click="actualizar()" id="boton_actualizar" class="btn btn-default">Actualizar</button>
-					</div>                    
-					<div class="col-xs-6" v-show="!tipoFiltrada.Id">
-						<button @click="guardar()" id="boton_guardar" class="btn btn-default">Guardar</button>
-					</div>
+					<button @click="cancelar()" id="boton_cancelar" class="btn btn-default">
+						<i class="fa fa-times"></i> Cancelar
+					</button>
+					<button v-bind:disabled="isEditable" @click="actualizar()" id="boton_actualizar" class="btn btn-default" v-if="tipoFiltrada.Id">
+						<i class="fa fa-undo"></i> Actualizar
+					</button>
+					<button @click="guardar()" id="boton_guardar" class="btn btn-default" v-if="!tipoFiltrada.Id">
+						<i class="fa fa-floppy-o"></i> Guardar
+					</button>
 				</div>
 			</form>
 		</div>
