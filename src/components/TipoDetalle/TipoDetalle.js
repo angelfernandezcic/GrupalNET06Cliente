@@ -3,7 +3,7 @@ export default {
   name: 'TipoDetalle',
   data() {
     return {
-      tipoFiltrada: {Id: '', Categoria: '', Descripcion: '', Repetitivo: '', Silenciable: '', Automatico: ''},
+      tipoFiltrada: {},
       tipoFiltradaBackUp: {},
       isEditable: true,
       isValido: true
@@ -18,6 +18,11 @@ export default {
   methods: {
     cancelar () {
       this.tipoFiltrada = JSON.parse(JSON.stringify(this.tipoFiltradaBackUp));
+      //this.$router.push('/TipoMaestro');
+      
+    },
+    volver () {
+      //this.tipoFiltrada = JSON.parse(JSON.stringify(this.tipoFiltradaBackUp));
       this.$router.push('/TipoMaestro');
       
     },
@@ -60,9 +65,8 @@ export default {
             _this.tipoFiltrada= {};
             //console.log(response)
           },
-          error: function () {
-            //console.log('Error insercion')
-            debugger
+          error: function (xhr, textStatus, errorThrown) {
+            bootbox.alert("Error!->" + errorThrown + "-->" + xhr.responseText);
           },
           complete: function () {
             _this.$router.push('/TipoMaestro');
@@ -118,15 +122,15 @@ export default {
     validar() {
       let mensaje = '';
       this.isValido = true;
-      if (!(this.tipoFiltrada.Categoria.length > 0 && this.tipoFiltrada.Categoria.length <= 15)) {
+      if (!(this.tipoFiltrada.Categoria != null && this.tipoFiltrada.Categoria.length > 0 && this.tipoFiltrada.Categoria.length <= 15)) {
         this.isValido = false;
         //console.log(1);
-        mensaje = mensaje.concat('El campo Categoría tiene que tener una longitud entre 0 y 15 caracteres.');
+        mensaje = mensaje.concat('El campo Categoría tiene que tener una longitud entre 0 y 15 caracteres.<br>');
       };
-      if (!(this.tipoFiltrada.Descripcion.length > 0 && this.tipoFiltrada.Descripcion.length <= 35)) {
+      if (!(this.tipoFiltrada.Descripcion != null && this.tipoFiltrada.Descripcion.length > 0 && this.tipoFiltrada.Descripcion.length <= 35)) {
         this.isValido = false;
         //console.log(2);
-        mensaje = mensaje.concat('\n El campo Descripción tiene que tener una longitud entre 0 y 35 caracteres.');
+        mensaje = mensaje.concat('El campo Descripción tiene que tener una longitud entre 0 y 35 caracteres.<br>');
       };
       //alert(mensaje);
       return mensaje;
