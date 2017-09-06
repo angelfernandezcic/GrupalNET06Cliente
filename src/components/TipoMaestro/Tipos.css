@@ -1,0 +1,8 @@
+
+
+#TipoMaestro .list-group-item:hover {
+    background-color: #E2E5E0;
+}
+#TipoMaestro #insertar{
+    margin-bottom: 10px;
+}
