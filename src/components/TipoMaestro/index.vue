@@ -1,14 +1,9 @@
 <template>
     <div id="TipoMaestro">
-        <h3>Tipos</h3>
+        <!--<h3>Tipos</h3>-->
         <div class="container-fluid">
-			<div id="barra_botones" class="row">
-				<div class="col-xs-11">
-					<!--<div class="dropdown">
-						<select></select>
-					</div>-->
-				</div>
-				<div class="col-xs-1">
+			<div id="barra_botones" class="row">				
+				<div class="col-xs-2 col-xs-offset-5">
 					 <router-link to="/TipoDetalle">Inserción</router-link>
 				</div>
 			</div>
@@ -21,7 +16,8 @@
 				</router-link>
 				<div class="col col-sm-3" id="go_detail">
 	            	<div class="list-item__title" id="go_detail_in">
-	            		<button @click="eliminarObjeto(item.Id)" id="boton_eliminar" class="btn btn-default">Eliminar</button>
+	            		<button @click="eliminarObjeto(item.Id)" id="boton_eliminar" class="btn btn-default">
+							<i class="fa fa-trash"></i> Eliminar</button>
 	            	</div>
 	            </div>	            
 			</div>
