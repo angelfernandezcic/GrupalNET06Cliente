@@ -32,6 +32,39 @@ export default {
     }
   },
   methods : {
+    notValid: function () {
+      var mensaje = "";
+      if(!this.ejecucionFiltrada.Nombre || this.ejecucionFiltrada.Nombre.length <=0 || this.ejecucionFiltrada.Nombre.length >40) {
+        mensaje += "Nombre tiene que tener entre 1 y 40 caracteres.<br>";
+      }
+      if(!this.ejecucionFiltrada.Mensaje || this.ejecucionFiltrada.Mensaje.length <=0 || this.ejecucionFiltrada.Mensaje.length >100){
+        mensaje += "Mensaje tiene que tener entre 1 y 100 caracteres.<br>";
+      }
+      if(!this.ejecucionFiltrada.ConsumoMemoria || this.ejecucionFiltrada.ConsumoMemoria <=0){
+        mensaje += "Consumo de memoria tiene que ser mayor que 0.<br>";
+      }
+
+      if(!this.ejecucionFiltrada.FechaInicio){
+        mensaje += "Introduzca fecha de inicio.<br>";
+      }else{
+        if(Date.parse(this.ejecucionFiltrada.FechaInicio)==NaN){
+          mensaje += "Fecha de inicio ha de ser una fecha válida.<br>";
+        }
+      }
+
+      if(!this.ejecucionFiltrada.FechaFinal){
+        mensaje += "Introduzca fecha final.<br>";
+      }else{
+        if(Date.parse(this.ejecucionFiltrada.FechaFinal)==NaN){
+          mensaje += "Fecha final ha de ser una fecha válida.<br>";
+        }
+      }
+
+      if(!this.ejecucionFiltrada.ConsumoRed || this.ejecucionFiltrada.ConsumoRed <=0){
+        mensaje += "Consumo de red tiene que ser mayor que 0.<br>";
+      }
+      return mensaje;
+    },
     cancelarEdicion() {
       this.ejecucionFiltrada = JSON.parse(JSON.stringify(this.ejecucionFiltradaBackUp))
     },
@@ -59,26 +92,39 @@ export default {
       }
     },
     guardarDatos() {
-      let _this = this
-      $.ajax({
-        type: 'POST',
-        url: 'http://localhost:51952/api/Ejecuciones/',
-        data: _this.ejecucionFiltrada,
-        success: (response) => {
-          _this.ejecucionFiltrada = {};
-          bootbox.alert({
-            message: "¡Guardado realizado con éxito!",
-            size: 'small',
-            callback: function () {
-              _this.$router.push('/EjecucionMaestro');
-            }
-          })
-        },
-        error: _this.error
-      })
+      let _this = this;
+      if(this.notValid()){
+        bootbox.alert({
+          message: this.notValid(),
+          size: 'small',
+        })
+      }else{
+        $.ajax({
+          type: 'POST',
+          url: 'http://localhost:51952/api/Ejecuciones/',
+          data: _this.ejecucionFiltrada,
+          success: (response) => {
+            _this.ejecucionFiltrada = {};
+            bootbox.alert({
+              message: "¡Guardado realizado con éxito!",
+              size: 'small',
+              callback: function () {
+                _this.$router.push('/EjecucionMaestro');
+              }
+            })
+          },
+          error: _this.error
+        })
+      }
     },
     actualizarDatos() {
-      let _this = this
+      let _this = this;
+      if(this.notValid()){
+        bootbox.alert({
+          message: this.notValid(),
+          size: 'small',
+        })
+      }else{
       bootbox.confirm({
         message: "¿Seguro que desea actualizar?",
         size: 'small',
@@ -114,6 +160,7 @@ export default {
           }
         }
       });
+    }
     },
     error: function (xhr, textStatus, errorThrown) {
       bootbox.alert("Error!->" + errorThrown + "-->" + xhr.responseText);
