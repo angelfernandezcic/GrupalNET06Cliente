@@ -14,6 +14,27 @@ export default {
   watch: {
     '$route': 'getID'
   },
+  computed: {
+    disableUpdate: function () {
+      var propiedades = [
+        "Nombre",
+        "Descripcion",
+        "Tipo",
+        "Fecha",
+        "Activa",
+        "Programacion",
+        "Formato"
+      ];
+      var disable = true;
+      for (var i = 0; i < propiedades.length; i++) {
+        if (this.tareaFiltrada[propiedades[i]] != this.tareaFiltradaBackUp[propiedades[i]]) {
+          disable = false;
+          break;
+        }
+      }
+      return (disable || !this.isEditable);
+    }
+  },
   methods: {
     cancelarEdicion () {
       this.tareaFiltrada = JSON.parse(JSON.stringify(this.tareaFiltradaBackUp))
@@ -35,7 +56,7 @@ export default {
             _self.tareaFiltradaBackUp = JSON.parse(JSON.stringify(response))
             _self.isEditable=false;
           },
-          error: () => {
+          error: (error) => {
             alert('Problemas al cargar el listado')
             debugger
           }
@@ -54,7 +75,7 @@ export default {
           _this.tareaFiltrada = {};
           _this.$router.push('/TareaMaestro');
         },
-        error: () => {
+        error: (error) => {
           debugger
         }
     })
@@ -77,7 +98,7 @@ export default {
                 _this.tareaFiltrada = {};
                 _this.$router.push('/TareaMaestro');
               },
-              error: () => {
+              error: (error) => {
                 debugger
               }
             })

@@ -2,16 +2,14 @@
     <div id="TareaMaestro">
 		<div class="container-fluid">
 			<div id="barra_botones" class="row">
-				<div class="col-xs-11">
-					<div class="dropdown">
-						<v-select></v-select>
-					</div>
-				</div>
-				<div class="col-xs-1">
+				<div class="col-xs-2 col-xs-offset-5">
 					 <router-link to="/TareaDetalle">Insercion</router-link>
 				</div>
 			</div>
-			<div class="list-group">
+			<div v-if="items.length < 1">
+				<h3>No existen tareas insertadas</h3>
+			</div>
+			<div v-else class="list-group">
 				<div v-for="item in items" class="row list-group-item">
 					<router-link @click.native.stop="" :to="{ name: 'TareaDetalle', params: { id: item.Id }}">
 			            <div id="main_info" class="col col-sm-9">

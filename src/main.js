@@ -4,13 +4,14 @@ import Vue from 'vue'
 import App from './App'
 import router from './router/'
 import Vue2Filters from 'vue2-filters'
-// import vue-select from 'vue-select'
+import vSelect from 'vue-select'
 import lodash from 'lodash'
 import VueLodash from 'vue-lodash/dist/vue-lodash.min'
 
-// Vue.use(v-select)
 Vue.use(VueLodash, lodash)
 Vue.use(Vue2Filters)
+
+Vue.component('v-select', vSelect)
 
 Vue.config.productionTip = false
 
