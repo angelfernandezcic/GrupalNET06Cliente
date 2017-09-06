@@ -3,7 +3,7 @@
 		<div class="container-fluid">
 			<div id="barra_botones" class="row">
 				<div class="col-xs-2 col-xs-offset-5">
-					 <router-link to="/EjecucionDetalle">Insercion</router-link>
+					 <router-link to="/EjecucionDetalle">Inserción</router-link>
 				</div>
 			</div>
 			<div v-if="items.length < 1">

@@ -7,7 +7,10 @@
 					 <router-link to="/TipoDetalle">Inserción</router-link>
 				</div>
 			</div>
-			<div v-for="item in items" v-bind:key="item.Id" class="row list_container list-group-item">
+			<div v-if="items.length < 1">
+				<h3>No existen tareas insertadas</h3>
+			</div>
+			<div v-else v-for="item in items" v-bind:key="item.Id" class="row list_container list-group-item">
 				<router-link :to="{ name: 'TipoDetalle', params: { id: item.Id }}">
 					<div id="main_info" class="col col-sm-9">
 						<div class="list-item__title"> {{ item.Categoria }} </div>

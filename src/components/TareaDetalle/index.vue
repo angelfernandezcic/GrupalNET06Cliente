@@ -12,7 +12,7 @@
 								<button @click="activarEdicion(isEditable = !isEditable)" class="btn btn-default">Editar</button>
 							</div>
 							<div class="col-xs-9 col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2">
-								<h2>{{!Object.keys(tareaFiltradaBackUp).length?"Inserte tarea nueva":"Detalle de la ejecucion"}}</h2>
+								<h2>{{!Object.keys(tareaFiltradaBackUp).length?"Inserte tarea nueva":"Detalle de la tarea"}}</h2>
 							</div>
 						</div>
         	</div>

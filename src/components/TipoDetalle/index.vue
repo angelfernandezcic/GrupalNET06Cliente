@@ -47,18 +47,30 @@
 					</div>
 				</div>
                 <div class="row">
-                    <label for="checkbox-inline" class="col-sm-10">
-                        <input v-bind:disabled="isEditable" type="checkbox" id="repetitivo" v-model="tipoFiltrada.Repetitivo">
-                        Repetitiva
-                    </label>
-                    <label for="checkbox-inline" class="col-sm-10">
-                        <input v-bind:disabled="isEditable" type="checkbox" id="silenciable" v-model="tipoFiltrada.Silenciable">
-                        Silenciable
-                    </label>
-                    <label for="checkbox-inline" class="col-sm-10">
-                        <input v-bind:disabled="isEditable" type="checkbox" id="automatico" v-model="tipoFiltrada.Automatico">
-                        Automatica
-                    </label>
+					<div class="col-xs-12 col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2">		
+						<div class="form-group">
+							<label class="col-xs-3">Repetitiva: </label>
+							<div class="col-xs-9">
+                        		<input v-bind:disabled="isEditable" type="checkbox" id="repetitivo" v-model="tipoFiltrada.Repetitivo">
+							</div>
+						</div>
+					</div>
+					<div class="col-xs-12 col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2">		
+						<div class="form-group">
+							<label class="col-xs-3">Silenciable: </label>
+							<div class="col-xs-9">
+                        		<input v-bind:disabled="isEditable" type="checkbox" id="silenciable" v-model="tipoFiltrada.Silenciable">
+							</div>
+						</div>
+					</div>
+					<div class="col-xs-12 col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2">		
+						<div class="form-group">
+							<label class="col-xs-3">Automática: </label>
+							<div class="col-xs-9">
+                        		<input v-bind:disabled="isEditable" type="checkbox" id="automatico" v-model="tipoFiltrada.Automatico">
+							</div>
+						</div>
+					</div>
                 </div>
 				<div class="row">
 					<button @click="cancelar()" id="boton_cancelar" class="btn btn-default">
