@@ -36,7 +36,7 @@ export default {
     }
   },
   methods: {
-    cancelarEdicion () {
+    cancelarEdicion() {
       this.tareaFiltrada = JSON.parse(JSON.stringify(this.tareaFiltradaBackUp))
     },
     activarEdicion () {
