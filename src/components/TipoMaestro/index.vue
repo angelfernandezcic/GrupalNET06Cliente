@@ -3,7 +3,7 @@
         <!--<h3>Tipos</h3>-->
         <div class="container-fluid">
 			<div id="barra_botones" class="row">	
-				<h3>Tipos de tareas.</h3>			
+				<!--<h3>Tipos de tareas.</h3>	-->		
 				<div class="col-sm-3 col-sm-offset-9">
 					<button id="insertar" @click="nuevoitem()" class="btn btn-default">
 							<i class="fa fa-plus"></i> Inserción</button>

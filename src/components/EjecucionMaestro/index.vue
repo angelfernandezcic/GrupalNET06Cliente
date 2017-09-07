@@ -2,7 +2,6 @@
 	<div id="EjecucionMaestro">
 		<div class="container-fluid">
 			<div id="barra_botones" class="row">
-				<h3>Ejecuciones.</h3>
 				<div class="col-sm-3 col-sm-offset-9">
 					<button id="insertar" @click="nuevoitem()" class="btn btn-default">
 						<i class="fa fa-plus"></i> Inserción
