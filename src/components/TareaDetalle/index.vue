@@ -54,8 +54,10 @@
 			        <div class="col-xs-12 col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2">
 						  <label class="col-xs-3">Activa: </label>
 						<div class="col-xs-9">
-  						  <input v-bind:disabled="!isEditable" type="radio" name="activo" :value="true" v-model="tareaFiltrada.Activa" checked>Si
-  						  <input v-bind:disabled="!isEditable "type="radio" name="activo" :value="false" v-model="tareaFiltrada.Activa">No
+								<input v-bind:disabled="!isEditable" type="radio" id="activo" value="true" v-model="tareaFiltrada.Activa">
+									<label for="si">Si</label>
+								<input v-bind:disabled="!isEditable" type="radio" id="activo" value="false" v-model="tareaFiltrada.Activa">
+									<label for="no">No</label>
 						</div>
 					</div>
 				</div>

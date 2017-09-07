@@ -2,11 +2,8 @@ var _ = require('lodash');
 export default {
   name: 'Detail',
   data() {
-    return {
-      tareaFiltrada: {},
-      tareaFiltradaBackUp: {},
-      isEditable: false
-    }
+    
+    return { tareaFiltrada: {Activa: true}, tareaFiltradaBackUp: {}, isEditable: false }
   },
   created (){
   	this.getID()
@@ -44,21 +41,23 @@ export default {
       if (!this.tareaFiltrada.Descripcion || this.tareaFiltrada.Descripcion.length <= 0 || this.tareaFiltrada.Descripcion.length > 100) {
         mensaje += "&#9888; Descripcion tiene que tener entre 1 y 100 caracteres.<br>";
       }
-      if (!this.tareaFiltrada.Tipo || this.tareaFiltrada.Tipo.length <= 0 || this.tareaFiltrada.Tipo.length > 40) {
-        mensaje += "&#9888; Tipo tiene que tener entre 1 y 40 caracteres.<br>";
+      if (!this.tareaFiltrada.Tipo || this.tareaFiltrada.Tipo.length <= 0 || this.tareaFiltrada.Tipo.length > 100) {
+        mensaje += "&#9888; Tipo tiene que tener entre 1 y 100 caracteres.<br>";
       }
-      var fecha = new Date(this.tareaFiltrada.Fecha);
-      if (!this.tareaFiltrada.Fecha) {
-        mensaje += "&#9888; Introduzca fecha.<br>";
-      } else if (fecha instanceof Date && !isNaN(fecha.valueOf())) {
-        mensaje += "&#9888; Fecha ha de ser una fecha válida.<br>";
+      if(!!this.tareaFiltrada.Fecha == false){
+        mensaje += "&#9888; Introduzca una fecha de inicio<br>";
+      }else if (isNaN(Date.parse(this.tareaFiltrada.Fecha.split('/').reverse().join('-')))) {
+        mensaje += "&#9888; Fecha ha de ser una fecha valida, formato dd/mm/aaaa.<br>";
       }
-      if (!this.tareaFiltrada.Programacion || this.tareaFiltrada.Programacion.length <= 0 || this.tareaFiltrada.Programacion.length > 100) {
-        mensaje += "&#9888; Programacion tiene que tener entre 1 y 100 caracteres.<br>";
+      if(!!this.tareaFiltrada.Programacion == false){
+        mensaje += "&#9888; Introduzca una fecha de programacion<br>";
+      }else if (isNaN(Date.parse(this.tareaFiltrada.Programacion.split('/').reverse().join('-')))) {
+        mensaje += "&#9888; Fecha ha de ser una fecha valida, formato dd/mm/aaaa.<br>";
       }
-      if (!this.tareaFiltrada.Formato || this.tareaFiltrada.Formato.length <= 0 || this.tareaFiltrada.Formato.length > 40) {
-        mensaje += "&#9888; Formato tiene que tener entre 1 y 40 caracteres.<br>";
+      if (!this.tareaFiltrada.Formato || this.tareaFiltrada.Formato.length <= 0 || this.tareaFiltrada.Formato.length > 100) {
+        mensaje += "&#9888; Formato tiene que tener entre 1 y 100 caracteres.<br>";
       }
+
       return mensaje;
     },
     cancelarEdicion() {
@@ -93,6 +92,9 @@ export default {
     guardarDatos () {
       let _this = this
       var mensaje = this.notValid()
+      if (mensaje) {
+        bootbox.alert({message: mensaje, size: 'small'})
+      } else {
       $.ajax({
         type: 'POST',
         url: 'http://localhost:51952/api/Tarea/',
@@ -104,10 +106,18 @@ export default {
         error: (error) => {
           debugger
         }
+      
     })
+  }
     },
     actualizarDatos () {
       let _this = this
+      if (this.notValid()) {
+        bootbox.alert({
+          message: this.notValid(),
+          size: 'small'
+        })
+      } else {
       bootbox.confirm({
         message: "¿Seguro que desea actualizar?",
         buttons: {
@@ -115,23 +125,31 @@ export default {
             cancel: {label: 'No',className: 'btn-danger'}
         },
         callback: function (result) {
-          if(result){
+          if (result) {
             $.ajax({
               type: 'PUT',
-              url: 'http://localhost:51952/api/Tarea/'+_this.idTarea,
-              data: _this.tareaFiltrada,
+              url: 'http://localhost:51952/api/Tarea/' + _this.idTarea,
+              data: _this.tareailtrada,
               success: (response) => {
                 _this.tareaFiltrada = {};
-                _this.$router.push('/TareaMaestro');
+                bootbox.alert({
+                  message: "¡Actualización realizada con éxito!",
+                  size: 'small',
+                  callback: function () {
+                    _this
+                      .$router
+                      .push('/TareaMaestro');
+                  }
+                })
+
               },
-              error: (error) => {
-                debugger
-              }
+              error: _this.error
             })
           }
         }
     });
     }
+  }
   },
   components: {
 
