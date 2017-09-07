@@ -122,15 +122,15 @@ export default {
     validar() {
       let mensaje = '';
       this.isValido = true;
-      if (!(this.tipoFiltrada.Categoria != null && this.tipoFiltrada.Categoria.length > 0 && this.tipoFiltrada.Categoria.length <= 15)) {
+      if (!(this.tipoFiltrada.Categoria != null && this.tipoFiltrada.Categoria.length > 0 && this.tipoFiltrada.Categoria.length <= 50)) {
         this.isValido = false;
         //console.log(1);
-        mensaje = mensaje.concat('El campo Categoría tiene que tener una longitud entre 0 y 15 caracteres.<br>');
+        mensaje = mensaje.concat('El campo Categoría tiene que tener una longitud entre 0 y 50 caracteres.<br>');
       };
-      if (!(this.tipoFiltrada.Descripcion != null && this.tipoFiltrada.Descripcion.length > 0 && this.tipoFiltrada.Descripcion.length <= 35)) {
+      if (!(this.tipoFiltrada.Descripcion != null && this.tipoFiltrada.Descripcion.length > 0 && this.tipoFiltrada.Descripcion.length <= 50)) {
         this.isValido = false;
         //console.log(2);
-        mensaje = mensaje.concat('El campo Descripción tiene que tener una longitud entre 0 y 35 caracteres.<br>');
+        mensaje = mensaje.concat('El campo Descripción tiene que tener una longitud entre 0 y 50 caracteres.<br>');
       };
       //alert(mensaje);
       return mensaje;

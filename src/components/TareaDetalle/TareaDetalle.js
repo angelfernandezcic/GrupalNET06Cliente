@@ -128,20 +128,17 @@ export default {
           if (result) {
             $.ajax({
               type: 'PUT',
-              url: 'http://localhost:51952/api/Tarea/' + _this.idTarea,
-              data: _this.tareailtrada,
+              url: 'http://localhost:51952/api/Tarea/' + _this.tareaFiltrada.Id,
+              data: _this.tareaFiltrada,
               success: (response) => {
                 _this.tareaFiltrada = {};
                 bootbox.alert({
                   message: "¡Actualización realizada con éxito!",
                   size: 'small',
                   callback: function () {
-                    _this
-                      .$router
-                      .push('/TareaMaestro');
+                    _this.$router.push('/TareaMaestro');
                   }
                 })
-
               },
               error: _this.error
             })
