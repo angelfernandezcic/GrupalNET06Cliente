@@ -15,7 +15,23 @@
 }
 
 .router-link-active {
-	background-color: red !important;
+	background-color: rgb(56, 164, 0) !important;
+}
+
+#boton_actualizar {
+  background-color: rgb(56, 164, 0) !important;
+}
+
+#boton_eliminar {
+  background-color: rgb(255, 0, 14) !important;
+}
+
+#boton_cancelar {
+  background-color: rgb(255, 0, 14) !important;
+}
+
+#boton_guardar {
+  background-color: rgb(56, 164, 0) !important;
 }
 
 .navbar-nav>li>a {

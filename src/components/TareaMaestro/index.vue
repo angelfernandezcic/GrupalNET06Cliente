@@ -2,8 +2,10 @@
     <div id="TareaMaestro">
 		<div class="container-fluid">
 			<div id="barra_botones" class="row">
-				<div class="col-xs-2 col-xs-offset-5">
-					 <router-link to="/TareaDetalle">Inserción</router-link>
+				<div class="col-sm-3 col-sm-offset-9">
+					<button id="insertar" @click="$router.push('/TareaDetalle')" class="btn btn-default">
+						<i class="fa fa-plus"></i> Inserción
+					</button>
 				</div>
 			</div>
 			<div v-if="items.length < 1">
